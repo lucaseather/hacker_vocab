@@ -8,6 +8,10 @@ import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///words.db'
+app.secret_key = 'your_very_secret_key'  # 必須設定一個 secret_key
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///words.db'
 db = SQLAlchemy(app)
 
 # 設定 OpenAI API 金鑰（記得換成你的 API Key）
