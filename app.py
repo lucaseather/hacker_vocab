@@ -9,6 +9,9 @@ import datetime
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///words.db'
 app.secret_key = 'your_very_secret_key'  # 必須設定一個 secret_key
+import secrets
+
+app.secret_key = secrets.token_hex(16)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///words.db'
