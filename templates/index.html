@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas 單字學習系統</title>
+    <style>
+        body { background-color: black; color: lime; font-family: "Courier New", monospace; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid lime; padding: 10px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>🟢 Lucas 單字學習系統</h1>
+    <form action="/add" method="post">
+        <label for="word">輸入單字：</label>
+        <input type="text" id="word" name="word" required>
+        <button type="submit">新增</button>
+    </form>
+    
+    <h2>📜 單字列表</h2>
+    <table>
+        <tr>
+            <th>單字</th>
+            <th>翻譯</th>
+            <th>英文例句</th>
+            <th>中文例句</th>
+        </tr>
+        {% for word in words %}
+        <tr>
+            <td>{{ word.word }}</td>
+            <td>{{ word.translation }}</td>
+            <td>{{ word.example_sentence_en }}</td>
+            <td>{{ word.example_sentence_zh }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

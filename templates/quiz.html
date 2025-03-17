@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單字測驗</title>
+    <style>
+        body { background-color: black; color: lime; font-family: "Courier New", monospace; }
+        button { font-size: 16px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔓 破解密碼：測驗模式</h1>
+    <p>請輸入 "{{ word.word }}" 的翻譯：</p>
+
+    <form action="/quiz" method="POST">  <!-- 確保使用 POST -->
+        <input type="hidden" name="word" value="{{ word.word }}">  <!-- 儲存測驗的單字 -->
+        <input type="text" name="answer" required>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>
