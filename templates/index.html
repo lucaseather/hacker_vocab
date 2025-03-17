@@ -8,9 +8,28 @@
         body { background-color: black; color: lime; font-family: "Courier New", monospace; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid lime; padding: 10px; text-align: left; }
+        
+        /* Flash 訊息樣式 */
+        #flash-messages { margin-bottom: 20px; }
+        .flash-message { padding: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 16px; }
+        .flash-success { background-color: rgba(0, 128, 0, 0.2); color: limegreen; }
+        .flash-warning { background-color: rgba(255, 204, 0, 0.2); color: #ffcc00; }
     </style>
 </head>
 <body>
+    <!-- Flash 提示訊息區 -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div id="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash-message flash-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <h1>🟢 Lucas 單字學習系統</h1>
     <form action="/add" method="post">
         <label for="word">輸入單字：</label>
