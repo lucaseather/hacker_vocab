@@ -98,5 +98,5 @@ def quiz():
         return render_template('quiz.html', word=question_word)
     return "No words available for quiz."
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
