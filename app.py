@@ -1,3 +1,4 @@
+from flask import flash
 import openai
 import requests
 from flask import Flask, render_template, request, redirect, url_for
@@ -78,7 +79,12 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add_word():
-    word = request.form['word']
+    word = request.form['word'].strip()  # 去除左右空白
+    # 檢查是否重複輸入（不區分大小寫，可以依需求調整）
+    if Word.query.filter(Word.word.ilike(word)).first():
+        flash("這個單字已經存在！", "warning")
+        return redirect(url_for('index'))
+    
     translation = translate_word(word)  # Google 翻譯
     example_sentence_en, example_sentence_zh = generate_example_sentence(word)  # AI 例句
     
@@ -88,7 +94,9 @@ def add_word():
     db.session.add(new_word)
     db.session.commit()
     
+    flash("單字已新增！", "success")
     return redirect(url_for('index'))
+
 
 @app.route('/quiz')
 def quiz():
